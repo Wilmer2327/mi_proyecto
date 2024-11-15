@@ -1,0 +1,15 @@
+@app.route('/viewcarros', methods=['POST', 'GET'])
+def viewcarros():
+    try:
+        if request.method == 'POST':
+            # Llama a la función para visualizar los carros
+            return CarController.viewCars()
+        else:
+            # Maneja la solicitud GET devolviendo una página o un mensaje
+            return render_template('viewcarros.html')  # Asegúrate de tener el archivo viewcarros.html
+    except Exception as e:
+        # Log del error y muestra un mensaje en la consola
+        print(f"Error en la ruta /viewcarros: {e}")
+        flash('Hubo un error al procesar tu solicitud. Por favor, intenta nuevamente más tarde.', 'error')
+        return redirect(url_for('main'))
+
